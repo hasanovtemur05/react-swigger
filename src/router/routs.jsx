@@ -1,5 +1,5 @@
-import { UnorderedListOutlined } from '@ant-design/icons';
-import { ShopOutlined } from '@ant-design/icons';
+
+import { ProductOutlined, UnorderedListOutlined } from '@ant-design/icons';
 const admin = [
     {
         content: "Category",
@@ -9,12 +9,17 @@ const admin = [
     {
         content: "Brand",
         path: "/admin-layout/brand",
-        icon:<ShopOutlined/>
+        icon:<ProductOutlined/>
     },
     {
         content: "Brand-category",
         path: "/admin-layout/brand-category",
-        icon:<ShopOutlined/>
+        icon:<ProductOutlined/>
+    },
+    {
+        content: "Product",
+        path: "/admin-layout/product",
+        icon:<ProductOutlined />
     },
   
    

@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
   
   import App from "../App";
-  import { SignIn, AdminLayout, SignUp, Category, Brand, SubCategory, BrandCategory } from "@pages";
+  import { SignIn, AdminLayout, SignUp, Category, Brand, SubCategory, BrandCategory, Product, NotFound } from "@pages";
   
   const Index = () => {
     const router = createBrowserRouter(
@@ -20,9 +20,10 @@ import {
             <Route path="brand" element={<Brand />} />
             <Route path="sub-category/:id" element={<SubCategory/>} />
             <Route path="brand-category" element={<BrandCategory/>} />
+            <Route path="product" element={<Product/>} />
           </Route>
 
-
+          <Route path="*" element={<NotFound/>} />
         </Route>
       )
     );
