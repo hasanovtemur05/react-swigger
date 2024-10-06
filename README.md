@@ -11,5 +11,11 @@ Currently, two official plugins are available:
 
 1 Created at ni formatlash //
 2 searchni tug'irlash kerak refresh bolganda qaytib qolmasin 
-3 404 not found page qilish kerak //
-4 conform deleteni global qilish
+3 404 not found  page qilish kerak //
+4 confirm deleteni global qilish
+5 global search component qilish kerak
+6 route protect qilish 
+7 dizayn tug'irlash kerak //
+8 logo ni tuzatish kerak
+9 sidebardagi iconlarni har xil bolishi kerak (yaxshi icon quyaman) //
+10 notification qilish kerak (global qilish)

@@ -2,16 +2,16 @@ import { BrandCategoryModal, GlobalTable } from "@components";
 import { Button, Space, Tooltip, Popconfirm, Form, Input } from "antd";
 import { useState, useEffect } from "react";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { brandCategory, brand } from '@service';
+import { brandCategory, brand } from "@service";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Index = () => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
-  const [brands, setBrands] = useState([]); 
-  const navigate = useNavigate()
-  const {search} = useLocation()
-  const [total, setTotal] = useState()
+  const [brands, setBrands] = useState([]);
+  const navigate = useNavigate();
+  const { search } = useLocation();
+  const [total, setTotal] = useState();
   const [editingBrandCategory, setEditingBrandCategory] = useState(null);
   const [params, setParams] = useState({
     search: "",
@@ -23,7 +23,7 @@ const Index = () => {
     try {
       const res = await brandCategory.get(params);
       if (res.status === 200) {
-        setData(res?.data?.data?.brandCategories) 
+        setData(res?.data?.data?.brandCategories);
         setTotal(res?.data?.data?.count);
       }
     } catch (error) {
@@ -43,55 +43,52 @@ const Index = () => {
       limit: pageSize,
     }));
     const current_params = new URLSearchParams(search);
-    current_params.set('page', `${current}`);
-    current_params.set('limit', `${pageSize}`);
+    current_params.set("page", `${current}`);
+    current_params.set("limit", `${pageSize}`);
     navigate(`?${current_params}`);
   };
 
-
   useEffect(() => {
     const params = new URLSearchParams(search);
-    const page = Number(params.get('page')) || 1;
-    const limit = Number(params.get('limit')) || 3;
+    const page = Number(params.get("page")) || 1;
+    const limit = Number(params.get("limit")) || 3;
     setParams((prev) => ({
       ...prev,
       page: page,
-      limit: limit
+      limit: limit,
     }));
   }, [search]);
 
   const fetchBrands = async () => {
     try {
-        const res = await brand.get();
-        setBrands(res?.data?.data?.brands);
-        console.log(res?.data?.data?.count, 'count');
-      } catch (error) {
-        console.log("Error fetching categories:", error);
-      }
-      getData()
+      const res = await brand.get();
+      setBrands(res?.data?.data?.brands);
+      console.log(res?.data?.data?.count, "count");
+    } catch (error) {
+      console.log("Error fetching categories:", error);
+    }
+    getData();
   };
 
   const handleCreate = async () => {
     setOpen(true);
-    getData()
+    getData();
   };
 
   const handleSubmit = async (dataToSend) => {
     try {
-      
       if (editingBrandCategory !== null) {
         await brandCategory.update(editingBrandCategory.id, dataToSend);
       } else {
         await brandCategory.create(dataToSend);
       }
-      getData(); 
+      getData();
       handleClose();
     } catch (error) {
       console.log("Error submitting brand:", error);
     }
-    getData()
+    getData();
   };
-  
 
   const handleClose = () => {
     setOpen(false);
@@ -100,11 +97,8 @@ const Index = () => {
 
   const editItem = (record) => {
     setEditingBrandCategory(record);
-    setOpen(true); 
+    setOpen(true);
   };
-
- 
-
 
   const handleChange = (event) => {
     setParams((prev) => ({
@@ -116,7 +110,6 @@ const Index = () => {
     navigate(`?${search_params.toString()}`);
   };
 
-
   const columns = [
     {
       title: "T/R",
@@ -127,34 +120,23 @@ const Index = () => {
       dataIndex: "name",
     },
     {
-        title: "brand_id",
-        dataIndex: "brand_id",
-      },
+      title: "brand_id",
+      dataIndex: "brand_id",
+    },
     {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <Space>
           <Tooltip title="Edit">
-            <Button
-              variant="solid"
-              color="danger"
-              onClick={() => editItem(record)}
-              style={{ backgroundColor: "#ffcc55" }}
-              icon={<EditOutlined />}
-            />
+            <Button onClick={() => editItem(record)} icon={<EditOutlined />} />
           </Tooltip>
           <Popconfirm
             title="Ushbu kategoriya o'chirilishini tasdiqlaysizmi?"
             onConfirm={() => deleteItem(record.id)}
           >
             <Tooltip title="Delete">
-              <Button
-                danger
-                icon={<DeleteOutlined />}
-                variant="solid"
-                color="danger"
-              />
+              <Button icon={<DeleteOutlined />} />
             </Tooltip>
           </Popconfirm>
         </Space>
@@ -171,7 +153,11 @@ const Index = () => {
         editingBrandCategory={editingBrandCategory}
         brands={brands}
       />
-      <Input placeholder="search..." className="w-[300px]" onChange={handleChange}/>
+      <Input
+        placeholder="search..."
+        className="w-[300px]"
+        onChange={handleChange}
+      />
       <Button
         type="primary"
         onClick={handleCreate}
@@ -184,12 +170,12 @@ const Index = () => {
         columns={columns}
         data={data}
         pagination={{
-            current: params.page,
-            pageSize: params.limit,
-            total: total,
-            showSizeChanger: true,
-            pageSizeOptions: ["2", "5", "7", "10", "12"],
-          }}
+          current: params.page,
+          pageSize: params.limit,
+          total: total,
+          showSizeChanger: true,
+          pageSizeOptions: ["2", "5", "7", "10", "12"],
+        }}
         onChange={handleTableChange}
       />
     </>

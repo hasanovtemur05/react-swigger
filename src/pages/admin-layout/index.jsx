@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Outlet, useLocation, NavLink } from "react-router-dom";
 import { admin } from "../../router/routs";
-import logo from "../../assets/images/logo.png"
+import logo from "../../assets/images/logo.png";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UserOutlined,
   VideoCameraOutlined,
-  LogoutOutlined
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, Avatar, Dropdown, message, theme } from "antd";
 
@@ -49,14 +49,11 @@ const Index = () => {
   );
 
   return (
-    <Layout style={{ minHeight: "100vh" }} >
+    <Layout style={{ minHeight: "100vh" }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-
-        <div className="w-[80%]  h-auto m-[10px]" >
+        <div className="w-[80%]  h-auto m-[10px]">
           <img src={logo} alt="logo" />
-          </div>
-
-
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -76,11 +73,11 @@ const Index = () => {
       <Layout>
         <Header
           style={{
-            padding:"0px 20px",
+            padding: "0px 20px",
             background: colorBgContainer,
             display: "flex",
             justifyContent: "space-between",
-            alignItems:"center"
+            alignItems: "center",
           }}
         >
           <Button

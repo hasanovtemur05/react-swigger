@@ -1,10 +1,10 @@
 import https from "./config";
 
 const product = {
-  create: (data) => https.post("/product/create", data ), 
-  get: (params) => https.get("/product/search", {params}),
-  update: (id, data) => https.patch(`/product/update/${id}`, data),
-  delete: (id) => https.delete(`/product/delete/${id}`)
+  create: (data) => https.post("/products/create", data ), 
+  get: (params) => https.get("/products/search", {params}),
+  update: (id, data) => https.patch(`/products/update/${id}`, data),
+  delete: (id) => https.delete(`/products/delete/${id}`)
 };
 
 

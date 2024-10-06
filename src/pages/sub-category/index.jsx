@@ -126,46 +126,35 @@ const Index = () => {
     navigate(`?${search_params.toString()}`);
   };
 
-    const columns = [
-      {
-        title: "T/R",
-        render: (_, __, index) => (params.page - 1) * params.limit + index + 1,
-      },
-      {
-        title: "Name",
-        dataIndex: "name",
-      },
-      {
-        title: "Action",
-        key: "action",
-        render: (_, record) => (
-          <Space>
-            <Tooltip title="Edit">
-              <Button
-                variant="solid"
-                color="danger"
-                onClick={() => editItem(record)}
-                style={{ backgroundColor: "#ffcc55" }}
-                icon={<EditOutlined />}
-              />
+  const columns = [
+    {
+      title: "T/R",
+      render: (_, __, index) => (params.page - 1) * params.limit + index + 1,
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Space>
+          <Tooltip title="Edit">
+            <Button onClick={() => editItem(record)} icon={<EditOutlined />} />
+          </Tooltip>
+          <Popconfirm
+            title="Ushbu kategoriya o'chirilishini tasdiqlaysizmi?"
+            onConfirm={() => deleteItem(record.id)}
+          >
+            <Tooltip title="Delete">
+              <Button icon={<DeleteOutlined />} />
             </Tooltip>
-            <Popconfirm
-              title="Ushbu kategoriya o'chirilishini tasdiqlaysizmi?"
-              onConfirm={() => deleteItem(record.id)}
-            >
-              <Tooltip title="Delete">
-                <Button
-                  danger
-                  icon={<DeleteOutlined />}
-                  variant="solid"
-                  color="danger"
-                />
-              </Tooltip>
-            </Popconfirm>
-          </Space>
-        ),
-      },
-    ];
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
 
   return (
     <>

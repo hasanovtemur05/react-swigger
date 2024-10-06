@@ -72,7 +72,7 @@ export default function CategoryModal({
                 loading={isSubmitting}
                 block
               >
-                {editingCategory?.id ? "Update" : "Save"}
+                {editingCategory?.id ? "Update" : "Create"}
               </Button>
             </Form.Item>
           </Form>

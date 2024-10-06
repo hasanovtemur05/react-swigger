@@ -29,6 +29,8 @@ const Index = () => {
       const res = await brand.get(params); 
       setData(res?.data?.data?.brands);
       setTotal(res?.data?.data?.count);
+      console.log(res);
+      
     } catch (error) {
       console.log("error");
     }
@@ -145,9 +147,7 @@ const Index = () => {
                 setEditingBrand(record);
                 setOpen(true)
               }  }
-              variant="solid"
-              color="danger"
-              style={{ marginRight: "8px", backgroundColor: "#ffcc55" }}
+              style={{ marginRight: "8px", }}
               icon={<EditOutlined />}
             />
           </Tooltip>
@@ -161,8 +161,6 @@ const Index = () => {
           >
             <Tooltip>
               <Button
-                danger
-                color="danger"
                 variant="solid"
                 icon={<DeleteOutlined />}
               />
